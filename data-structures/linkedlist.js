@@ -46,7 +46,6 @@ class LinkedList {
         this.size++;
     }
     
-
     remove = (item) =>{
         this.previousNode = this.findPrev(item); 
         this.previousNode.next = this.previousNode.next.next;
