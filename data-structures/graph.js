@@ -90,7 +90,7 @@ class Graph {
         queue.push(s); // add to back of queue
         while (queue.length > 0) {
             var v = queue.shift(); // remove from front of queue
-            if (v == undefined) {
+            if (v !== undefined) {
                 print("Visited vertex: " + v);
             }
 
