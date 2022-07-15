@@ -18,6 +18,7 @@ class LinkedList {
     constructor(){
         this.head = new Node("head");
         this.size = 0;
+        this.next = null;
     }
 
     
