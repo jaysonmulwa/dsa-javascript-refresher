@@ -1,9 +1,6 @@
 /**
- * Shortcomings of Arrays
- * The main problem with using JavaScript arrays, however, is that arrays in JavaScript are implemented as objects, causing them to be less efficient than arrays built in languages such as C++ and Java.
- * When you determine that the operations performed on an array are too slow for practical use, you can consider using the linked list as an alternative data structure.
- *
- * An Object-Based Linked List Design.
+ * when created, has its head node’s next property point back to itself
+ * Therefore, the tail node points to the head node
  */
 
 class Node {
@@ -16,6 +13,7 @@ class Node {
 class LinkedList {
   constructor() {
     this.head = new Node("head");
+    this.head.next = this.head;
     this.size = 0;
   }
 
@@ -53,19 +51,6 @@ class LinkedList {
     while (current.next !== null) {
       console.log(current.next.value);
       current = current.next;
-    }
-  };
-
-  advance = (val, n) => {
-    this.current = this.find(val);
-    counter = 0;
-    while (this.current.next != null && counter < n) {
-      counter++;
-      this.current = this.current.next;
-    }
-
-    if (counter == n) {
-      //this
     }
   };
 }

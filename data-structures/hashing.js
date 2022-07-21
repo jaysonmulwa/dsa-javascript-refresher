@@ -10,7 +10,7 @@
  * 
  * Handling collisions:
  * 1. Separate chaining
- * -- - a hash table that uses a linked list or array to handle collisionss (each array element of the hasj table holds another array).
+ * -- - a hash table that uses a linked list or array to handle collisionss (each array element of the hash table holds another array).
  * -- - this is a good data structure for small data sets
  * -- - after we create the array to store the hashed keys, we call a function that assigns an empty array to each array element of the hash table
  * 2. Linear probing
