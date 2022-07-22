@@ -6,6 +6,7 @@
  * Examples of divide and conquer algorithms:
  * 1. Merge sort
  * 2. Quick sort
+ * - Heap sort
  * 3. Finding maximum and minimum, 
  * 
  * 4. Binary search
@@ -27,6 +28,12 @@
  * 
  * Space complexty is equal to the dept of recursion.
  * Time complexity can be calculated via recurrence relations.
+ * 
+ * !!MergeSort, Quick Sort and Heap sort All have O(n log n) Average Time complexity
+ * !!Space complexity:
+ * !!1. HeapSort 0(1)
+ * !!2. QuickSort 0(log n)
+ * !!3. MergeSort 0(n)
  */
 
 //Iterative method:
