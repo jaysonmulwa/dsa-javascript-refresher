@@ -74,7 +74,10 @@ const gridTravelerMemo = (n, m, memo = {}) => {
  * !canSum - return boolean
  * Check whether their are value in the array that add up to the given total.
  */
-
+// Height is m - assuming we are subtracting -1 at every level, height would be m eventually
+// branching factor is n - the number of items in the array.
+// Therefore Time complexity = O(n^m);
+// Space comlexity = O(m) 
 const canSum = (sum, array) =>{
     if (sum == 0) return true;
     if (sum < 0) return false;
@@ -85,7 +88,8 @@ const canSum = (sum, array) =>{
     return bool;
 };
 
-
+//Time = O(m * n)
+//Space = O(m)
 const canSumMemo = (sum, array, memo = {}) =>{
     if (sum in memo) return memo[sum];
     if (sum == 0) return true;
@@ -97,8 +101,44 @@ const canSumMemo = (sum, array, memo = {}) =>{
     return memo[sum];
 };
 
-console.log(canSumMemo(7, [11, 3, 5, 7]));
+//console.log(canSumMemo(7, [11, 3, 5, 7]));
 
 
+
+/**
+ * !HowSum - Similar to canSum, but we now return an array of numbers that add up to targetSum.
+ * 
+ */
+//Time  = O(n^m * m)
+//Space = O(m)
+ const howSum = (sum, array) =>{
+    if (sum === 0) return [];
+    if (sum < 0) return null;
+
+    for (let x = 0; x <= array.length - 1; x++){
+        const remainderResult = howSum(sum - array[x], array);
+        if (remainderResult != null) {
+            return [...remainderResult, array[x]];
+        }
+    }
+ }
+
+ //!memoized
+ //Time = O(n*m^2)
+ //Space = O(m * m) 
+ const howSumMemo = (sum, array, memo = {}) =>{
+    if (sum in memo) return memo[sum];
+    if (sum === 0) return [];
+    if (sum < 0) return null;
+    for (let x = 0; x <= array.length - 1; x++){
+        const remainderResult = howSumMemo(sum - array[x], array, memo);
+        if (remainderResult != null) {
+            memo[sum] = [...remainderResult, array[x]];
+            return memo[sum];
+        }
+    }
+ }
+
+ console.log(howSumMemo(7, [11, 3, 4, 5, 7]));
 
 
