@@ -139,6 +139,59 @@ const canSumMemo = (sum, array, memo = {}) =>{
     }
  }
 
- console.log(howSumMemo(7, [11, 3, 4, 5, 7]));
+ //console.log(howSumMemo(7, [11, 3, 4, 5, 7]));
 
 
+
+
+/**
+ * !Best sum
+ * - Return an array of the shortest combination of numbers that add up exactly to the tartgetSum. 
+ * 
+ */
+
+const bestSum = (sum, array) => {
+    if (sum == 0) return [];
+    if (sum < 0) return null;
+    let shortestCombination = null;
+    for (let x = 0; x <= array.length - 1; x++){
+        const  remainderResult = bestSum(sum - array[x], array)
+        if (remainderResult != null){
+            let returnable = [...remainderResult, array[x]];
+            if (shortestCombination == null) {
+                shortestCombination = returnable
+            }
+
+            if (shortestCombination.length > returnable.length){
+                shortestCombination = returnable;
+            }
+        } 
+    }
+    return shortestCombination;
+}
+
+
+
+const bestSumMemo = (sum, array, memo = {}) => {
+    if (sum in memo) return memo[sum];
+    if (sum == 0) return [];
+    if (sum < 0) return null;
+    let shortestCombination = null;
+    for (let x = 0; x <= array.length - 1; x++){
+        const  remainderResult = bestSumMemo(sum - array[x], array, memo)
+        if (remainderResult != null){
+            memo[sum] = [...remainderResult, array[x]];
+            
+            if (shortestCombination == null) {
+                shortestCombination = memo[sum];
+            }
+
+            if(shortestCombination.length > memo[sum].length){
+                shortestCombination = memo[sum];
+            }
+        } 
+    }
+    return shortestCombination;
+}
+
+console.log(bestSum(100, [1, 3, 4, 5, 7]));
