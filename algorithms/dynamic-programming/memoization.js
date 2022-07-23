@@ -149,7 +149,8 @@ const canSumMemo = (sum, array, memo = {}) =>{
  * - Return an array of the shortest combination of numbers that add up exactly to the tartgetSum. 
  * 
  */
-
+//Time  = O(n^m * m)
+//Space = O(m * m) - because of extra shortestComination array
 const bestSum = (sum, array) => {
     if (sum == 0) return [];
     if (sum < 0) return null;
@@ -171,7 +172,8 @@ const bestSum = (sum, array) => {
 }
 
 
-
+//Time - O(n * m * m)
+//Space - O(m ^ 2)
 const bestSumMemo = (sum, array, memo = {}) => {
     if (sum in memo) return memo[sum];
     if (sum == 0) return [];
