@@ -45,3 +45,35 @@ const longestPalindromicSubstringDP = (str) => {
     }
     return str.substring(start, end + 1);
 }
+
+//Manacher's Algorithm for Longest Palindromic Substring
+const longestPalindromicSubstringManacher = (str) => {
+    let newStr = "^#" + str.split("").join("#") + "#$";
+    let newStrLength = newStr.length;
+    let center = 0;
+    let right = 0;
+    let maxLength = 0;
+    let maxCenter = 0;
+    let p = new Array(newStrLength);
+    for (let i = 1; i < newStrLength - 1; i++) {
+        if (i < right) {
+            p[i] = Math.min(right - i, p[2 * center - i]);
+        } else {
+            p[i] = 1;
+        }
+        while (newStr[i + p[i]] === newStr[i - p[i]]) {
+            p[i]++;
+        }
+        if (i + p[i] > right) {
+            center = i;
+            right = i + p[i];
+        }
+        if (p[i] > maxLength) {
+            maxLength = p[i];
+            maxCenter = i;
+        }
+    }
+    let start = (maxCenter - maxLength) / 2;
+    let end = start + maxLength - 1;
+    return str.substring(start, end + 1);
+}
