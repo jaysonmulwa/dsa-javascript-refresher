@@ -47,9 +47,11 @@ const gridTraveler = (n, m) => {
 
 //?memoized
 const gridTravelerMemo = (n, m, memo = {}) => {
+    let key = `${n}${m}`;
+    if (key in memo) return memo[key];
     if ((n == 1) && (m == 1)) return 1;
     if ((n <= 0) || (m <= 0)) return 0;
-    let key = `${n}${m}`
+   
     memo[key] = gridTravelerMemo(n, m - 1, memo) + gridTravelerMemo(n - 1, m, memo);
     return memo[key];
 }
