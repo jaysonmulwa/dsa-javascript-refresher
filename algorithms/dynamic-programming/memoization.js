@@ -35,8 +35,6 @@ const fibMemo = (n, memo = {}) => {
 
 
 
-
-
 /**
  * !Grid Trveller = gridTraveler(n, m)
  * @param {number} n - number of rows, m - number of columns in the grid
@@ -70,6 +68,37 @@ const gridTravelerMemo = (n, m, memo = {}) => {
     return memo[key];
 }
 
-console.log(gridTravelerMemo(3, 3));
+//console.log(gridTravelerMemo(3, 3));
+
+/**
+ * !canSum - return boolean
+ * Check whether their are value in the array that add up to the given total.
+ */
+
+const canSum = (sum, array) =>{
+    if (sum == 0) return true;
+    if (sum < 0) return false;
+    let bool = false;
+    for (let x = 0; x <= array.length - 1; x++){
+        bool = canSum(sum - array[x], array);
+    }
+    return bool;
+};
+
+
+const canSumMemo = (sum, array, memo = {}) =>{
+    if (sum in memo) return memo[sum];
+    if (sum == 0) return true;
+    if (sum < 0) return false;
+    memo[sum] = false;
+    for (let x = 0; x <= array.length - 1; x++){
+        memo[sum] = canSumMemo(sum - array[x], array, memo);
+    }
+    return memo[sum];
+};
+
+console.log(canSumMemo(7, [11, 3, 5, 7]));
+
+
 
 
