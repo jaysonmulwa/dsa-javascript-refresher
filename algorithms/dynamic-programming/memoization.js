@@ -1,4 +1,18 @@
 /**
+ * Memoization recipe
+ * 1. Make it work
+ * - Visualize problem as a tree.
+ * - Implement the tree using recurions (think of base cases).
+ * - test it .
+ * - Now you have a brute-force solution.
+ * 2. Make it efficient.
+ * - add a memo object.
+ * - add a new base case to return memo values.
+ * - store return values in memo.
+ */
+
+
+/**
  * !Fibonnaci
  */
 //normal fibonacci
@@ -57,4 +71,5 @@ const gridTravelerMemo = (n, m, memo = {}) => {
 }
 
 console.log(gridTravelerMemo(3, 3));
+
 
