@@ -71,7 +71,7 @@ const gridTravelerMemo = (n, m, memo = {}) => {
 //console.log(gridTravelerMemo(3, 3));
 
 /**
- * !canSum - return boolean
+ * !canSum - return boolean -- Decision Problem
  * Check whether their are value in the array that add up to the given total.
  */
 // Height is m - assuming we are subtracting -1 at every level, height would be m eventually
@@ -106,7 +106,8 @@ const canSumMemo = (sum, array, memo = {}) =>{
 
 
 /**
- * !HowSum - Similar to canSum, but we now return an array of numbers that add up to targetSum.
+ * !HowSum - Combinatorics problem
+ * - Similar to canSum, but we now return an array of numbers that add up to targetSum.
  * 
  */
 //Time  = O(n^m * m)
@@ -145,7 +146,7 @@ const canSumMemo = (sum, array, memo = {}) =>{
 
 
 /**
- * !Best sum
+ * !Best sum - Optimization problem.
  * - Return an array of the shortest combination of numbers that add up exactly to the tartgetSum. 
  * 
  */
@@ -196,4 +197,42 @@ const bestSumMemo = (sum, array, memo = {}) => {
     return shortestCombination;
 }
 
-console.log(bestSum(100, [1, 3, 4, 5, 7]));
+//console.log(bestSum(100, [1, 3, 4, 5, 7]));
+
+
+/////dynamic programming also works with strings not only numbers
+
+/**
+ * !canConstruct -- Decision problem
+ * Given a wordbank and target word, can we construct target word from wordbank
+ */
+
+const canConstruct = (word, wordBank) => {
+    if (word.length == 0) return true;
+    if (word.length < 0) return false;
+    let bool = false;
+    for (let x = 0; x < wordBank.length - 1; x++) {
+        let newTarget = word.slice(0, wordBank[x].length);
+        if (wordBank[x] === newTarget){
+            bool = canConstruct(word.slice(wordBank[x].length), wordBank);
+            return bool;
+        } 
+    }
+}
+
+
+const canConstructMemo = (word, wordBank, memo = {}) => {
+    if (word in memo) return memo[word];
+    if (word.length == 0) return true;
+    if (word.length < 0) return false;
+    let bool = false;
+    for (let x = 0; x < wordBank.length - 1; x++) {
+        let newTarget = word.slice(0, wordBank[x].length);
+        if (wordBank[x] === newTarget){
+            memo[newTarget] = canConstructMemo(word.slice(wordBank[x].length), wordBank, memo);
+            return memo[newTarget];
+        } 
+    }
+}
+
+console.log(canConstructMemo("bakersend", ["baker", "bakery", "send", "end"]));
