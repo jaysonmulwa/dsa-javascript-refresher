@@ -206,33 +206,54 @@ const bestSumMemo = (sum, array, memo = {}) => {
  * !canConstruct -- Decision problem
  * Given a wordbank and target word, can we construct target word from wordbank
  */
-
+//Time - O(n^m * m)
+//Space - O(m * m)
 const canConstruct = (word, wordBank) => {
     if (word.length == 0) return true;
     if (word.length < 0) return false;
     let bool = false;
     for (let x = 0; x < wordBank.length - 1; x++) {
-        let newTarget = word.slice(0, wordBank[x].length);
-        if (wordBank[x] === newTarget){
+        if (word.indexOf(wordBank[x]) === 0){
             bool = canConstruct(word.slice(wordBank[x].length), wordBank);
             return bool;
         } 
     }
 }
 
-
+//Time - O(n * m * m);
+//Space - O(m * m)
 const canConstructMemo = (word, wordBank, memo = {}) => {
     if (word in memo) return memo[word];
     if (word.length == 0) return true;
     if (word.length < 0) return false;
     let bool = false;
     for (let x = 0; x < wordBank.length - 1; x++) {
-        let newTarget = word.slice(0, wordBank[x].length);
-        if (wordBank[x] === newTarget){
-            memo[newTarget] = canConstructMemo(word.slice(wordBank[x].length), wordBank, memo);
-            return memo[newTarget];
+        if (word.indexOf(wordBank[x]) === 0){
+            memo[word] = canConstructMemo(word.slice(wordBank[x].length), wordBank, memo);
+            return memo[word];
         } 
     }
 }
 
-console.log(canConstructMemo("bakersend", ["baker", "bakery", "send", "end"]));
+
+
+
+/**
+ * ! countConstruct 
+ * Numer of ways we can construct the word
+ */
+const countConstruct = (word, wordBank) => {
+    if (word === "") return 1;
+    let total = 0;
+    for (let x = 0; x < wordBank.length - 1; x++) {
+        if(word.indexOf(wordBank[x]) === 0) {
+            _word = word.slice(wordBank[x].length);
+            total += countConstruct(_word, wordBank);
+        }
+        
+    }
+
+    return total;
+}
+
+console.log(countConstruct("bakersend", ["baker", "bakers", "end", "send"]));
