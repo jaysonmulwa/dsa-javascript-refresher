@@ -37,4 +37,24 @@ const gridTraveler = (m, n) => {
   return table;
 };
 
-console.log(gridTraveler(3, 3));
+//Time O(m * n)
+//Space O(m)
+const canSum = (m, arr) => {
+    const table = Array(m + 1).fill(false);
+    table[0] = true;
+    for (let i = 0; i <= table.length; i++){
+        let curr = table[i];
+        for (let j = 0; j < arr.length; j++ ) {
+            let num = arr[j];
+            let nextIndex = i + num;
+            
+            if ((nextIndex < table.length) && (curr == true)) {
+                table[nextIndex] = curr;
+            }
+        }
+    }
+    return table;
+ 
+}
+
+console.log(canSum(7, [3, 4, 5]));
