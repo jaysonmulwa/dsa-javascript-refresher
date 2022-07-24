@@ -68,7 +68,38 @@ const howSum = (m, arr) => {
             }
         }  
     }
+
+    console.log(table);
     return table[m];
 }
 
-console.log(howSum(7, [3, 4, 5]));
+
+
+
+const bestSum = (m, arr) => {
+    const table = Array(m + 1).fill(null);
+    table[0] = [];
+    for (let i = 0; i <= m; i++){
+        if (table[i] != null) {
+            
+            for (num of arr) {
+                let res = [];
+                 res = [...table[i], num];
+
+                 if (table[i + num] != null) {
+                    if (res.length < table[i + num].length) {
+                        table[i + num] = res; 
+                    }
+                } else {
+                    table[i + num] = res; 
+                }
+            }
+            
+        }  
+    }
+
+    console.log(table);
+    return table[m];
+}
+
+console.log(bestSum(8, [2, 3, 5]));
