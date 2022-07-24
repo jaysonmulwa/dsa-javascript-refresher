@@ -58,39 +58,17 @@ const canSum = (m, arr) => {
 
 
 
-/*const howSum = (m, arr) => {
+const howSum = (m, arr) => {
     const table = Array(m + 1).fill(null);
     table[0] = [];
-    for (let i = 0; i <= table.length; i++){
-        let curr = table[i];
-        for (let j = 0; j < arr.length; j++ ) {
-            let num = arr[j];
-            let nextIndex = i + num;
-
-                if ((nextIndex < table.length)) {
-                    if (table[nextIndex] == null) {
-                        table[nextIndex] = [];
-                    }
-                    table[nextIndex].push(num);
-                }
-            
-        }
-        sum = 0;
-        if (table[m] !== null) {
-            //console.log(table[m]);
-            table[m].forEach(element => {
-                sum += element;
-            });
-            
-            if (sum == m) {
-               // return table[m];
+    for (let i = 0; i <= m; i++){
+        if (table[i] != null) {
+            for (num of arr) {
+                table[i + num] = [...table[i], num]
             }
-        }
-
-        console.log(table);
+        }  
     }
-
-    return [];
+    return table[m];
 }
 
-console.log(howSum(7, [3, 4, 5]));*/
+console.log(howSum(7, [3, 4, 5]));
