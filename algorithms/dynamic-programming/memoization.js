@@ -242,6 +242,7 @@ const canConstructMemo = (word, wordBank, memo = {}) => {
  * ! countConstruct 
  * Numer of ways we can construct the word
  */
+//Time & space same as precious
 const countConstruct = (word, wordBank) => {
     if (word === "") return 1;
     let total = 0;
