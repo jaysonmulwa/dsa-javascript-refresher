@@ -102,4 +102,10 @@ const bestSum = (m, arr) => {
     return table[m];
 }
 
-console.log(bestSum(8, [2, 3, 5]));
+//console.log(bestSum(8, [2, 3, 5]));
+
+const canConstruct = (word, array) => {
+    
+}
+
+console.log(countConstruct("bakersend", ["baker", "bakers", "end", "send"]));

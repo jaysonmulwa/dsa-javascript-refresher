@@ -1,4 +1,5 @@
 //O(n log n) -- traverses all elements but also has recursion
+//Worst case is O (n * n)
 //Uses a pivot, which is the last element of the array
 const quickSort = array => {
     if (array.length <= 1) return array;
@@ -14,7 +15,7 @@ const quickSort = array => {
         return [...quickSort(leftArr), pivot, ...quickSort(rightArr)];
 
     }else if (leftArr.length > 0){
-        console.log(pivot);
+   
         return [...quickSort(leftArr), pivot];
         
     }else if (rightArr.length > 0){
