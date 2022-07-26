@@ -100,6 +100,8 @@ word.toUpperCase();
 //8.To integer -- returns the string as an integer
 word.toInt();
 
+arr.split(""); // String to aaray
+
 
 /**
  * Number methods
@@ -138,3 +140,5 @@ Math.min([1, 2, 3]);
 
 //8. Max -- returns the largest number in the array
 Math.max([1, 2, 3]);
+
+
