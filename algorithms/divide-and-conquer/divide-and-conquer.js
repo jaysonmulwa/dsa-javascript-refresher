@@ -99,6 +99,10 @@ merge = (left, right) => {
             result.push(right.shift());
         }
     }
-    return result.concat(left).concat(right);
+    return result.concat(left, right);
 }
+
+console.log(merge([1, 4, 4, 78], [2, 3, 2, 64]));
+
+
 

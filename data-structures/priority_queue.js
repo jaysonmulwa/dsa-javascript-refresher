@@ -3,10 +3,12 @@
  * Inserted at the end, removed from the front
  * Can be used to sort: Radix sort.
  * Can be used i Priority queues.
- * 
+ * !In Priority queues, the element with the highest priority is removed first. Despite the oder in which they are inserted. 
  * Array-Based implementation:
  */
-class Queue {
+
+//TODO: Update correct logic.
+/*class Queue {
     constructor(){
         this.queue = [];
         this.size = 0;
@@ -52,5 +54,5 @@ q.enqueue("little");
 q.enqueue("lamb");
 
 q.dequeue();
-console.log(q.what());
+console.log(q.what());*/
 
