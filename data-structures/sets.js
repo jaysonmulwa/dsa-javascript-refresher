@@ -82,3 +82,14 @@ class Set {
         return this.dataStore;
     }
 }
+
+//There are set methods
+let set = new Set();
+set.add(1);
+set.add(2);
+set.add(3);
+set.delete(2);
+set.show();
+set.has(1);
+set.size; //3
+set.clear(); //empties the set
