@@ -26,3 +26,60 @@ const longestSubstring = (word) => {
 }
 
 console.log(longestSubstring("abba"));
+
+//!Longest palindromic substring
+//Expand arround center
+// Time: O(n^2)
+// Space: O(1)
+const longestPalindrome = (s) =>{
+    if (s == null || s.length() < 1) return "";
+    let start = 0, end = 0;
+    for (let i = 0; i < s.length(); i++) {
+        let  len1 = expandAroundCenter(s, i, i);
+        let len2 = expandAroundCenter(s, i, i + 1);
+        let len = Math.max(len1, len2);
+        if (len > end - start) {
+            start = i - (len - 1) / 2;
+            end = i + len / 2;
+        }
+    }
+    return s.substring(start, end + 1);
+}
+
+const expandAroundCenter = (s, left, right) => {
+    let L = left, R = right;
+    while (L >= 0 && R < s.length() && s.charAt(L) == s.charAt(R)) {
+        L--;
+        R++;
+    }
+    return R - L - 1;
+}
+
+//!Longest common prefix 
+//Accepted on Leetcode :-)
+// Divide and conquer
+// Time: O(n*log(n))
+// Space: O(1)
+var longestCommonPrefix = function(strs) {
+    if (strs.length == 0) return "";
+    if (strs.length == 1) return strs[0];
+    return longest(
+        longestCommonPrefix(strs.slice(0, strs.length/2)),
+        longestCommonPrefix(strs.slice(strs.length/2))
+    );
+};
+
+var longest = function(_a, _b) {
+    let a = _a.split("");
+    let b = _b.split("");
+    let min = Math.min(a.length, b.length);
+    let common = [];
+    for (let x = 0; x < min; x++) {
+        if (a[x] == b[x]){
+          common.push(a[x]);  
+        } else {
+          break;  
+        }
+    }
+    return common.join("");
+}
