@@ -173,4 +173,22 @@ const findLongestSubArraySum = (array, sum) => {
 
 }
 
-console.log(findLongestSubArraySum([1, 2, 3, 7, 5], 12));
+//console.log(findLongestSubArraySum([1, 2, 3, 7, 5], 12));
+
+//!Maximum subarray
+//Contiguos array with the largest sum
+//Kadanes algorithm
+
+const maxSubArray = (array) => {
+
+    for (let x = 0; x < array.length; x++) {
+
+    }
+
+}
+
+console.log(maxSubArray([-2, 2, 5, -11, 6])); //[2, 5]
+
+
+
+
