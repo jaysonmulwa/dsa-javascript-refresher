@@ -142,4 +142,30 @@ const _sortedSquaredArray = (arr) => {
     return squared.sort((a, b) => a - b);
 }
 //2 Pointers can reduce complexity to Os(n)
-console.log(sortedSquaredArray([-7, 1, 3]));
+//console.log(sortedSquaredArray([-7, 1, 3]));
+
+
+//!Find longest subarray by sum
+const findLongestSubArraySum = (array, sum) => {
+    let i = 0;
+    let j = 0;
+    let currSum = array[0];
+    for (let x = 0; x < array.length; x++) {
+        if (currSum < sum) {
+            j++;
+            currSum = currSum  + array[j];
+        }
+
+        if (currSum > sum) {
+            currSum = currSum  - array[i];
+            i++;
+        }
+        if (currSum == sum) {
+            return [i, j];
+        }
+    
+    }
+
+}
+
+console.log(findLongestSubArraySum([1, 2, 3, 7, 5], 12));
