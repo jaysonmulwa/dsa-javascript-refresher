@@ -150,6 +150,7 @@ const findLongestSubArraySum = (array, sum) => {
     let i = 0;
     let j = 0;
     let currSum = array[0];
+    let longest = [0, 0];
     for (let x = 0; x < array.length; x++) {
         if (currSum < sum) {
             j++;
@@ -161,10 +162,14 @@ const findLongestSubArraySum = (array, sum) => {
             i++;
         }
         if (currSum == sum) {
-            return [i, j];
+            if ((longest[1] - longest[0]) < (j - i)){
+                longest = [i, j]
+            }
         }
     
     }
+
+    return longest;
 
 }
 
