@@ -24,8 +24,7 @@ const longestSubstring = (word) => {
     }
     return max;
 }
-
-console.log(longestSubstring("abba"));
+//console.log(longestSubstring("abba"));
 
 //!Longest palindromic substring
 //Expand arround center
@@ -131,4 +130,15 @@ const firstDuplicate = (arr) => {
             found.push(arr[x]);
         }
     }
+    return -1;
 }
+
+
+//!sortedSquaredArray
+//Input sorted array
+//Output sorted array
+const sortedSquaredArray = (arr) => {
+    let squared = arr.map((element) => element * element);
+    return squared.sort((a, b) => a - b);
+}
+console.log(sortedSquaredArray([-7, 1, 3]));
