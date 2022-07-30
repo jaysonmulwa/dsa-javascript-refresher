@@ -137,8 +137,9 @@ const firstDuplicate = (arr) => {
 //!sortedSquaredArray
 //Input sorted array
 //Output sorted array
-const sortedSquaredArray = (arr) => {
+const _sortedSquaredArray = (arr) => {
     let squared = arr.map((element) => element * element);
     return squared.sort((a, b) => a - b);
 }
+//2 Pointers can reduce complexity to Os(n)
 console.log(sortedSquaredArray([-7, 1, 3]));
