@@ -1,5 +1,5 @@
 const longestPalindromicSubstring = (str) => {
-    //Bruteforce
+    //Bruteforce O(n^3)
     let longest = "";
     for (let i = 0; i < str.length; i++) {
         for (let j = i + 1; j < str.length; j++) {

@@ -83,3 +83,37 @@ var longest = function(_a, _b) {
     }
     return common.join("");
 }
+
+
+//!First non-repeating character in a string
+// Time: O(n)
+//Hashmap solution
+// Space: O(n)
+var firstUniqChar = function(s) {
+    let map = {};
+    for (let i = 0; i < s.length; i++) {
+        if (map[s[i]] == undefined) {
+            map[s[i]] = 1;
+        } else {
+            map[s[i]]++;
+        }
+    }
+    for (let i = 0; i < s.length; i++) {
+        if (map[s[i]] == 1) {
+            return i;
+        }
+    }
+    return -1;
+}
+
+//IndexOf solution
+// Time: O(n)
+// Space: O(1)
+var firstUniqChar = function(s) {
+    for (let i = 0; i < s.length; i++) {
+        if (s.indexOf(s[i]) == s.lastIndexOf(s[i])) {
+            return i;
+        }
+    }
+    return -1;
+}
