@@ -117,3 +117,18 @@ var firstUniqChar = function(s) {
     }
     return -1;
 }
+
+
+
+//!firstDuplicate of integer array
+// Time O(n)
+const firstDuplicate = (arr) => {
+    let found = [];
+    for (let x = 0; x < arr.length; x++) {
+        if (arr.indexOf(arr[x]) > -1) {
+            return arr[x];
+        } else {
+            found.push(arr[x]);
+        }
+    }
+}
