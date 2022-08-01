@@ -18,6 +18,21 @@
  * Topological sorting uses dfs
  */
 
+/**
+ * Graphs are represented with adjacency matrices _or_ adjacency lists.
+ * Ajacency List (lists a node and its connected noted)
+ * a : [ b, c ]
+ * b : [ d
+ * 
+ * 
+ * Adjacency matrix (matrix with 1s where there are connected nodes)
+ *   a b c d
+ * a 0 1 1 0
+ * b 1 0 0 1
+ * c 1 0 0 0
+ * d 0 1 0 0
+ */
+
 class Vertex {
     constructor (label){
         this.label = label;
@@ -68,6 +83,7 @@ class Graph {
         }
     }
 
+    //We can implement dfs iteratively with stack, and recursively 
     dfs = (v) =>{
         this.marked[v] = true;
 
@@ -84,6 +100,7 @@ class Graph {
 
     }
 
+    //Iteratively with queue
     bfs = (s) => {
         var queue = [];
         this.marked[s] = true;
@@ -131,6 +148,11 @@ class Graph {
         }
         stack.push(v);
     }
+
+
+    /**
+     * !Problems
+     */
        
        
 }
