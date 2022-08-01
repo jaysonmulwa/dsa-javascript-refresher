@@ -165,17 +165,17 @@ let graph = {
 };
 
 //!1.hasPath - dfs
-hasPath = (graph, src, dst) => {
-    if (src == dst) return true;
-    for (let neighbour of graph[src]) {
-        if (this.hasPath(graph, neighbour, dst) == true) {
+hasPath = (graph, source, destination) => {
+    if (source == destination) return true;
+    for (let neighbour of graph[source]) {
+        if (this.hasPath(graph, neighbour, destination) == true) {
             return true
         }
     }
     return false;
 }
 
-//!Conevert edges list to adjacency list
+//!2. Convert edges list (for undirected graph) to adjacency list
 let edges = [
     ['a', 'b'],
     ['a', 'c'],
@@ -184,13 +184,33 @@ let edges = [
     ['c', 'f'],
 ];
 
-toList = (edges) => {
+buildGraph = (edges) => {
     let graph = {};
     for (let edge of edges) {
-        if (!graph[edge[0]]) {
-            graph[edge[0]] = [];
-        }
+        if (!graph[edge[0]]) graph[edge[0]] = [];
+        if (!graph[edge[1]]) graph[edge[1]] = [];
         graph[edge[0]].push(edge[1]);
+        graph[edge[1]].push(edge[0]);
     }
     return graph;
 }
+
+hasPath_withSet = (graph, source, destination, visited) => {
+    if (visited.has(source)) return false; //no need to visit the same node twice
+    if (source == destination) return true;
+    for (let neighbour of graph[source]) {
+        if (this.hasPath_withSet(graph, neighbour, destination, visited) == true) {
+            return true
+        }
+    }
+    return false;
+}
+
+const undirectedPath = (edges, nodeA, nodeB) => {
+    let graph = buildGraph(edges);
+    return hasPath_withSet(graph, nodeA, nodeB, new Set());
+}
+
+
+
+
