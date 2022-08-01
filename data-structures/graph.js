@@ -164,7 +164,7 @@ let graph = {
     c: ['f'],
 };
 
-//!1.hasPath - dfs
+//!1. hasPath - dfs
 hasPath = (graph, source, destination) => {
     if (source == destination) return true;
     for (let neighbour of graph[source]) {
@@ -212,5 +212,56 @@ const undirectedPath = (edges, nodeA, nodeB) => {
 }
 
 
+//!3. Connected components count -- undirected
+const explore = (graph, current, visited) => {	
+    if (visited.has(String(current))) return false;
+    visited.add(String(current));
+
+    for (let neighbour of graph[current]) {
+        explore(graph, neighbour, visited);
+    }
+
+    return true;
+}
+
+const connectedComponents = (graph) => {
+    let visited = new Set();
+    let count = 0;
+
+    for (let node in graph) {
+        if (!visited.has(node)) {
+            explore(graph, node, visited);
+            count++;
+        }
+    }
+
+    return count;
+}
 
 
+//!4. Largest component -- undirected
+const largestComponent = (graph) => {
+    let longest = 0;
+    let visited = new Set();
+    for (let node in graph) {
+        const size = exploreLargest(graph, node, visited);
+        longest = Math.max(longest, size);
+    }
+
+    return longest;
+}
+
+const exploreLargest = (graph, node, visited) => {
+    if (visited.has(node)) return 0;
+    visited.add(node);
+
+    let size = 1;
+    for (let neighbour of graph[node]) {
+        size += exploreLargest(graph, neighbour, visited);
+    }
+
+    return size;
+}
+
+
+    
