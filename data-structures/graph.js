@@ -147,12 +147,50 @@ class Graph {
             }
         }
         stack.push(v);
+    }       
+       
+}
+
+
+
+
+/**
+ * !Problems
+ */
+
+let graph = {
+    a: ['b', 'c'],
+    b: ['d', 'e'],
+    c: ['f'],
+};
+
+//!1.hasPath - dfs
+hasPath = (graph, src, dst) => {
+    if (src == dst) return true;
+    for (let neighbour of graph[src]) {
+        if (this.hasPath(graph, neighbour, dst) == true) {
+            return true
+        }
     }
+    return false;
+}
 
+//!Conevert edges list to adjacency list
+let edges = [
+    ['a', 'b'],
+    ['a', 'c'],
+    ['b', 'd'],
+    ['b', 'e'],
+    ['c', 'f'],
+];
 
-    /**
-     * !Problems
-     */
-       
-       
+toList = (edges) => {
+    let graph = {};
+    for (let edge of edges) {
+        if (!graph[edge[0]]) {
+            graph[edge[0]] = [];
+        }
+        graph[edge[0]].push(edge[1]);
+    }
+    return graph;
 }
