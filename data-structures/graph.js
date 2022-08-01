@@ -266,7 +266,8 @@ const exploreSize = (graph, node, visited) => {
 
 //5. Shortest path -- bfs comes in handy
 
-//6. Count islands
+//6. Count islands = nested loop + dfs
+//Time and space = O(rc)  -- row*col
 const countIslands = (grid) => {
     let count = 0;
     const visited = new Set();
