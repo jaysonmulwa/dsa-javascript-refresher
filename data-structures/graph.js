@@ -244,23 +244,59 @@ const largestComponent = (graph) => {
     let longest = 0;
     let visited = new Set();
     for (let node in graph) {
-        const size = exploreLargest(graph, node, visited);
+        const size = exploreSize(graph, node, visited);
         longest = Math.max(longest, size);
     }
 
     return longest;
 }
 
-const exploreLargest = (graph, node, visited) => {
+const exploreSize = (graph, node, visited) => {
     if (visited.has(node)) return 0;
     visited.add(node);
 
     let size = 1;
     for (let neighbour of graph[node]) {
-        size += exploreLargest(graph, neighbour, visited);
+        size += exploreSize(graph, neighbour, visited);
     }
 
     return size;
+}
+
+
+//5. Shortest path -- bfs comes in handy
+
+//6. Count islands
+const countIslands = (grid) => {
+    let count = 0;
+    const visited = new Set();
+    for (let row = 0; row < grid.length; row++) {
+        for (let col = 0; col < grid[row].length; col++) {
+            if (exploreGrid(grid, r, c, visited) == true) {
+                count++;
+            }
+        }
+    }
+
+    return count;
+
+}
+
+
+const exploreGrid = (grid, row, col, visited) => {
+    if (row < 0 || row >= grid.length || col < 0 || col >= grid[row].length) return false;
+    if (grid[row][col] == W) return false;
+    
+    const pos  = `${row}-${col}`;
+    if (visited.has(pos)) return false; //already traversed
+    visited.add(pos);
+
+    exploreGrid(grid, row + 1, col, visited);
+    exploreGrid(grid, row - 1, col, visited);
+    exploreGrid(grid, row, col + 1, visited);
+    exploreGrid(grid, row, col - 1, visited);
+
+    return true;
 }
 
 
