@@ -19,6 +19,7 @@
  *
  */
 
+//? Implementation
 class Node {
   constructor(data, left, right) {
     this.data = data;
@@ -168,6 +169,7 @@ class BST {
   }
 }
 
+//? Common topical areas:
 /** 
  * !Depth first traversal
  * Stack
