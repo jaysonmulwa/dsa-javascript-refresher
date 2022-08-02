@@ -168,9 +168,11 @@ class BST {
   }
 }
 
-//!Depth first traversal
-// Stack
-//Iterative and recursive
+/** 
+ * !Depth first traversal
+ * Stack
+ * Iterative and recursive
+ * */
 
 //Iterative
 const depthFirstValue = (root) => {
@@ -188,7 +190,7 @@ const depthFirstValue = (root) => {
   }
 };
 
-//recursive 
+//Recursive 
 const _depthFirstValue = (root) => {
     if (root == null) return [];
     const leftValues = depthFirstValue(root.left);
@@ -196,3 +198,27 @@ const _depthFirstValue = (root) => {
     return [root.val, ...leftValues, ...rightValues];
 }
 
+
+
+/**
+ * !Breadth-first Traversal
+ * Queue
+ * Iterative and recursive
+ */
+
+//Iterative
+const breadthFirstValue = (root) => {
+    let queue = [root];
+    let result = [];
+    while (queue.length > 0) {
+        let node = queue.shift();
+        result.push(node.show());
+        if (node.left != null) {
+            queue.push(node.left);
+        }
+        if (node.right != null) {
+            queue.push(node.right);
+        }
+    }
+    return result; //we retur object in the order in which they leave the queue.
+}
