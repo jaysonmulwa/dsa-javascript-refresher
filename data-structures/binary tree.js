@@ -254,7 +254,22 @@ const _treeIncludes = (root, target) => {
 }
 
 //!Tree sum
+//also has iterative and recursive
 const treeSum = (root) => {
   if (root == null) return 0;
   return root.value + treeSum(root.left) + treeSum(root.right);
+}
+
+
+
+//!Max path sum
+//time complexity: O(n)
+//space complexity O(n)
+const maxPathSum = (root) => {
+  if (root == null) return -Infinity;
+  if (root.left == null && root.right == null) return root.value;
+  let left = maxPathSum(root.left);
+  let right = maxPathSum(root.right);
+  let max = Math.max(left, right);
+  return root.value + max;
 }
