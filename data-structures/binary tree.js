@@ -172,6 +172,8 @@ class BST {
  * !Depth first traversal
  * Stack
  * Iterative and recursive
+ * Time: O(n)
+ * Space: O(n)
  * */
 
 //Iterative
@@ -204,6 +206,8 @@ const _depthFirstValue = (root) => {
  * !Breadth-first Traversal
  * Queue
  * Iterative and recursive
+ * Time complexity: O(n)
+ * Space complexity: O(n)
  */
 
 //Iterative
@@ -221,4 +225,36 @@ const breadthFirstValue = (root) => {
         }
     }
     return result; //we retur object in the order in which they leave the queue.
+}
+
+//!Tree includes
+//dfs
+const treeIncludes = (root, target) => {
+  if (root.value == target) return true;
+  if (root == null) return false;
+  let leftValues = treeIncludes(root.left, target);
+  let rightValues = treeIncludes(root.right, target);
+  return (leftValues || rightValues) ? true : false;
+}
+
+//Iterative bfs
+const _treeIncludes = (root, target) => {
+  let queue = [root];
+  while (queue.length > 0) {
+    let node = queue.shift();
+    if (node.value == target) return true;
+    if (node.left != null) {
+      queue.push(node.left);
+    }
+    if (node.right != null) {
+      queue.push(node.right);
+    }
+  }
+  return false;
+}
+
+//!Tree sum
+const treeSum = (root) => {
+  if (root == null) return 0;
+  return root.value + treeSum(root.left) + treeSum(root.right);
 }
