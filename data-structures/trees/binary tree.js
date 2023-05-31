@@ -6,8 +6,10 @@
  * 2. Red-Black Trees
  * 3. B-Trees (An advanceed data structure - particularly good for maintaining databases on secondary (disk) storage)
  * 4. Augmented Trees [Interval trees, Order-statistic trees]
+ * 5. van Emde Boas Trees
+ * 6. Tries/ Radix trres/Retrieval trees.
  *
- * !Binary tree criteria:
+ * ! Binary tree criteria:
  * 1. Each node has 0 or 2 children
  * 2. Exactly one root node
  * 3. Exactly one path to any leaf node
@@ -17,7 +19,7 @@
  * root node = level 0;
  *
  *
- * !Binary search tree:
+ * ! Binary search tree:
  * - A binary search tree is a binary tree in which data with lesser values are stored in left nodes and data with greater values are stored in right nodes.
  * - Supports many dynamic-set operations, including: SEARCH, MINIMUM, MAXIMUM, PREDECESSOR, SUCCESSOR, INSERT, and DELETE. Thus, we can use a search tree both as a dictionary and as a priority queue
  * Types of BST searches
@@ -28,6 +30,55 @@
  * Basic operations on a bst take time proportional to the height of the tree. 
  * For a complete binary tree with n nodes, such operations run in O (lg n) worst-case time
  * If the tree is a linear chain of n nodes worst-case is O(n)
+ * 
+ * 
+ * ! Red-Black Trees 
+ * If height of a bst is large, the set operations may run no faster than with a linked list.
+ * Red-black trees are one of many search-tree schemes that are “balanced” in order to guarantee that basic dynamic-set operations take O(lg n) time in the worst case
+ * A red-black tree is a binary search tree with one extra bit of storage per node: its color, which can be either RED or BLACK. 
+ * By constraining the node colors on any simple path from the root to a leaf, red-black trees ensure that no such path is more than twice as long as any other, so that the tree is approximately balanced.
+ * 
+ *  * * Red Black Tree properties
+ * 1. Every node is either red or black.
+ * 2. The root is black.
+ * 3. Every leaf (NIL) is black.
+ * 4. If a node is red, then both its children are black.
+ * 5. For each node, all simple paths from the node to descendant leaves contain the same number of black nodes.
+ * 
+ * * black-height of the node, denoted bh(x) - The number of black nodes in aany simple path from a node x down to the leaf (but not inluding x)
+ * To preserve properties of red-black tree we can do rotations [left rotation, right rotation].
+ * 
+ * Are also known as balanced binary trees.
+ * Other variations of balanced binary trres are:
+ * - weightbalanced trees, k-neighbor trees, and scapegoat trees
+ * - Splay trees (Self-adjusting trees - maintain balance without any explicit balance condition such as color)
+ *
+ * Skip lists provide an alternative to balanced binary trees. 
+ * A skip list is a linked list that is augmented with a number of additional pointers. Each dictionary operation runs in expected time O(lg n) on a skip list of n items
+ * 
+ * !Augmented Trees.
+ * 1. Order statistics trees. A redblack tree which also stores a vlue size in each node. size is the vnumber of nodes below it excluding the sentinel node.
+ * 2. Interval trees. The value stored is an interval. the size value is the maximum value betwwen the range differences in the child nodes.
+ * 
+ * 
+ * ! B-Trees.
+ * - Are balanced binary search trees (similar to red-black trees) optimized for databse I/O oprations.
+ * - The differ from red0black trees in the can have a large branching factor (more than 2 children per node).
+ * - satellite information associated with a key, or the pointer to such satellite information, travels with the key whenever the key is moved from node to node
+ * 
+ * B + -tree, stores all the satellite information in the leaves and stores only keys and child pointers in the internal nodes, thus maximizing the branching factor of the internal nodes.
+ * 
+ * * B Tree Properties
+ * - Every node x has the following attributes:
+ * - - the x.n. keys themselves stored in nondecreasing order
+ * - - x.leaf , a boolean value that is TRUE if x is a leaf and FALSE if x is an internal node
+ * - All leaves have the same depth, which is the tree’s height h.
+ * - Nodes have lower and upper bounds on the number of keys they can contain. We express these bounds in terms of a fixed integer t-2 called the minimum degree of the B-tree.
+ * - - Every node other than the root must have at least t - 1 keys
+ * - -  Every node may contain at most 2t - 1 keys. Its full if it has 2t - 1 keys.
+ * - - //? The simplest B-tree occurs when t D 2. Every internal node then has either 2, 3, or 4 children, and we have a 2-3-4 tree
+ * - Each internal node x also contains x.n + 1 pointers
+ *
  */
 
 //? Implementation
@@ -220,8 +271,6 @@ const _depthFirstValue = (root) => {
     const rightValues = depthFirstValue(root.right);
     return [root.val, ...leftValues, ...rightValues];
 }
-
-
 
 /**
  * !Breadth-first Traversal
