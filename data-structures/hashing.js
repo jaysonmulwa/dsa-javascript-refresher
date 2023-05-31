@@ -8,6 +8,25 @@
  * - - properly sizing array - use a size that is a prime number
  * - - a better hashing algorithm e.g Horners algorithm (it adds a step by multiplying the resulting total by a prime constant e.g 31, 37) 
  * 
+ * Hash Functions
+ * 1. Universal hashing
+ * Maximizes best average case performance by randomizing the set of hash functions chosen.
+ * We begin by choosing a prime number p large enough so that every possible key k is in the range 0 to p - 1, inclusive
+ *
+ *
+ * 2. Perfect hashing
+ * - Hashing is often a good choice for its excellent average-case performance, hashing can also provide excellent worst-case performance when the set of keys is static
+ * - We call a hashing technique perfect hashing if O.1/ memory accesses are required to perform a search in the worst case
+ * - To create a perfect hashing scheme, we use two levels of hashing, with universal hashing at each level.
+ * - - The first level is essentially the same as for hashing with chaining. universal hash functions.
+ * - - Instead of making a linked list of the keys hashing to slot j , however, we use a small secondary hash table Sj with an associated hash function hj
+ *
+ * 3. Other (Multiplication and division hashing)
+ * - Division
+ * -- h(k) = k mod m : where m is the size of array
+ * - Multiplication we first multiply key k by some integer value A. 
+ * -- h(k) = m(kA mod 1)
+ *
  * Handling collisions:
  * 1. Chaining
  * a. Separate chaining
@@ -32,25 +51,6 @@
  * - offers one of the best methods available for open addressing because the permutations produced have many of the characteristics of randomly chosen permutations
  * - The initial probe goes to position T[h1(k)]
  * - successive probe positions are offset from previous positions by the amount h2(k) . modulo m
- *
- * Hash Functions
- * 1. Universal hashing
- * Maximizes best average case performance by randomizing the set of hash functions chosen.
- * We begin by choosing a prime number p large enough so that every possible key k is in the range 0 to p - 1, inclusive
- *
- *
- * 2. Perfect hashing
- * - Hashing is often a good choice for its excellent average-case performance, hashing can also provide excellent worst-case performance when the set of keys is static
- * - We call a hashing technique perfect hashing if O.1/ memory accesses are required to perform a search in the worst case
- * - To create a perfect hashing scheme, we use two levels of hashing, with universal hashing at each level.
- * - - The first level is essentially the same as for hashing with chaining. universal hash functions.
- * - - Instead of making a linked list of the keys hashing to slot j , however, we use a small secondary hash table Sj with an associated hash function hj
- *
- * 3. Other (Multiplication and division hashing)
- * - Division
- * -- h(k) = k mod m : where m is the size of array
- * - Multiplication we first multiply key k by some integer value A. 
- * -- h(k) = m(kA mod 1)
  */
 
 class Hash {
