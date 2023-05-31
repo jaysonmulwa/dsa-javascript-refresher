@@ -37,6 +37,20 @@
  * - Radix Sort sorts numbers by processing individual digits, starting from the least significant digit to the most significant digit.
  * - It has a time complexity of O(d * (n + k)), where d is the number of digits and k is the range of possible digit values.
  * 
+ * * Sorting in a javascript context
+ * - array.sort((a, b) => a - b);
+ * - array.sort((a, b) => a.localeCompare(b)); //string sensitive
+ * - One commonly used algorithm in JavaScript engines is a variation of quicksort, known as "introsort." 
+ * - Introsort combines the strengths of quicksort, heapsort, and insertion sort to achieve efficient and reliable performance for various input scenarios.
+ * - The implementation typically starts with quicksort and switches to heapsort when the recursion depth exceeds a certain threshold. This helps to avoid the worst-case time complexity of quicksort (O(n^2)) for already sorted or nearly sorted arrays.
+ * 
+ * * Sorting in a php context
+ * - sort() and rsort(): These functions sort an array in ascending (sort()) or descending (rsort()) order using introsort. They modify the original array.
+ * - asort() and arsort(): These functions sort an associative array in ascending (asort()) or descending (arsort()) order based on the values, preserving the key-value associations. They use introsort.
+ * - ksort() and krsort(): These functions sort an associative array in ascending (ksort()) or descending (krsort()) order based on the keys, preserving the key-value associations. They use introsort.
+ * - usort() function is available to sort an array using a user-defined comparison function. e.g usort($unsortedArray, "customSort"); function customSort(a, b) { return $a < $b ? -1 : 1; }
+ * 
+ * 
  */
 
 class Sort {
