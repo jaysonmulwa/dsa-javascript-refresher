@@ -1,22 +1,33 @@
 /**
  * A tree is a nonlinear data structure that is used to store data in a hierarchical manner. A tree is made up of a set of nodes connected by edges.
- * In terms of search BST > link list
- * In terms of insert, delete BST > array
- * root node = level 0;
+ * 
+ * ! Trees:
+ * 1. Binary Search Trees
+ * 2. Red-Black Trees
+ * 3. B-Trees (An advanceed data structure - particularly good for maintaining databases on secondary (disk) storage)
+ * 4. Augmented Trees [Interval trees, Order-statistic trees]
  *
  * !Binary tree criteria:
  * 1. Each node has 0 or 2 children
  * 2. Exactly one root node
  * 3. Exactly one path to any leaf node
+ * 
+ * In terms of search BST > linked list
+ * In terms of insert, delete BST > array
+ * root node = level 0;
  *
  *
  * !Binary search tree:
- * A binary search tree is a binary tree in which data with lesser values are stored in left nodes and data with greater values are stored in right nodes.
+ * - A binary search tree is a binary tree in which data with lesser values are stored in left nodes and data with greater values are stored in right nodes.
+ * - Supports many dynamic-set operations, including: SEARCH, MINIMUM, MAXIMUM, PREDECESSOR, SUCCESSOR, INSERT, and DELETE. Thus, we can use a search tree both as a dictionary and as a priority queue
  * Types of BST searches
- * 1. Searh for a value
+ * 1. Search for a value
  * 2. Search for the minimum value
  * 3. Search for the maximum value
- *
+ * 
+ * Basic operations on a bst take time proportional to the height of the tree. 
+ * For a complete binary tree with n nodes, such operations run in O (lg n) worst-case time
+ * If the tree is a linear chain of n nodes worst-case is O(n)
  */
 
 //? Implementation
@@ -41,7 +52,7 @@ class BST {
     this.postOrder = this.postOrder.bind(this);
   }
 
-  insert = (data) => {
+  insert = (data) => { //INSERT
     const node = new Node(data, null, null);
     if (this.root === null) {
       this.root = node;
@@ -53,13 +64,13 @@ class BST {
         if (data < current.data) {
           current = current.left;
           if (current == null) {
-            parent.left = n;
+            parent.left = node;
             break;
           }
         } else {
           current = current.right;
           if (current == null) {
-            parent.right = n;
+            parent.right = node;
             break;
           }
         }
@@ -67,7 +78,7 @@ class BST {
     }
   };
 
-  //Find specific value
+  //Find specific value //TREE-SEARCH //ITERATIVE
   find = (val) => {
     let current = this.root;
     while (current.data != val) {
@@ -85,6 +96,15 @@ class BST {
     }
 
     return current;
+  };
+
+  find_recursive = (node, value) => { //TREE-SEARCH //RECURSIVE
+    if (node == null || value == node.value) return node;
+    if (value < node.value) {
+      return this.find_recursive(node.left, value);
+    } else {
+      return this.find_recursive(node.right, value);
+    }
   };
 
   //find minimum
@@ -105,7 +125,7 @@ class BST {
     return current.data;
   };
 
-  inOrder = (node) => {
+  inOrder = (node) => { //left, base, right
     if (node !== null) {
       this.inOrder(node.left);
       console.log(node.show());
@@ -113,7 +133,7 @@ class BST {
     }
   };
 
-  preOrder = (node) => {
+  preOrder = (node) => { //base, left, right
     if (node !== null) {
       console.log(node.show());
       this.preOrder(node.left);
@@ -121,7 +141,7 @@ class BST {
     }
   };
 
-  postOrder = (node) => {
+  postOrder = (node) => { //left, right, base
     if (node !== null) {
       this.postOrder(node.left);
       this.postOrder(node.right);
@@ -129,7 +149,7 @@ class BST {
     }
   };
 
-  remove = (data) => {
+  remove = (data) => { //DELETE
     root = removeNode(this.root, data);
   };
 
@@ -177,7 +197,6 @@ class BST {
  * Time: O(n)
  * Space: O(n)
  * */
-
 //Iterative
 const depthFirstValue = (root) => {
   let stack = [root];
@@ -261,7 +280,6 @@ const treeSum = (root) => {
   if (root == null) return 0;
   return root.value + treeSum(root.left) + treeSum(root.right);
 }
-
 
 
 //!Max path sum
