@@ -1,18 +1,28 @@
 /**
  * graph definitions:
  * Edges = (v1, v2) , (v2, v3) = Have a cost or weight between them
- * Verices = v1, v2, v3
+ * Vertices = v1, v2, v3
  * Path = sequence of vertices in a graph
- * loop=  a path that consists of a vertex to itself - Is of length 0. 
+ * loop =  a path that consists of a vertex to itself - Is of length 0. 
  * directed graph = A graph whose pairs are ordered(indicated by an arrow to show flow from one vertex to another.)
  * Two vertices are considered strongly connected if there is a path from the first vertex to the second vertex, and vice versa.
  * 
  * Edges in a graph can be reprsented via an adjacency list or adjacency matrix;
  * 
- * 
  * Searching: depth-first search, breadth first search.
  * dfs = recusrson
  * bfs = queue-like structure.
+ * 
+ * Shortest paths algos
+ * 1. Single source shortest path - Dijkstra's, Bellman-Ford
+ * 2. All pairs shortest paths - Floyd-warshall algorithm
+ * 
+ * BFS:
+ * - Dijkstras Shortest Path Algorithm - solves the single-source shortest-paths problem on a weighted, directed graph G for the case in which all edge weights are nonnegative.
+ * - Prim's minimum spannning tree algorithm
+ * 
+ * DFS:
+ * -  
  * 
  * Shortest path uses bfs
  * Topological sorting uses dfs
@@ -24,13 +34,48 @@
  * a : [ b, c ]
  * b : [ d
  * 
- * 
  * Adjacency matrix (matrix with 1s where there are connected nodes)
  *   a b c d
  * a 0 1 1 0
  * b 1 0 0 1
  * c 1 0 0 0
  * d 0 1 0 0
+ */
+
+/**
+ * Flow
+ * 
+ * Obeys conservation of flow where current into a vertex, is equal to flow out of a vertex. Kirchoff's law is based on this.
+ */
+
+/**
+ * Minimum Cost Spanning Tree
+ * A path with the least value sum of edge weights that connects all vetices in a graph without cycles. 
+ * It is impossible to compare all paths hence we use a greedy algorithms
+ *  
+ * Greedy algorithms for mcst
+ * 1. Prims
+ * - Select the smallest one, then select the connected smallest one.
+ * 
+ * 
+ * 2. Kruskal's O (n^2)
+ * - Always select the minimum cost edge. (that doesnt form a cycle)
+ * - Incase we use a min heap the complexity becomes O(n logn)
+ */
+
+/**
+ * Shortest Path
+ * 1. Sinlge source shortest path
+ * A. Dijkstras O(n^2)
+ * 
+ * B. Bellman-Ford O(E * V) -> O(n^2)
+ * We iteratively relax all vertices n times. Where n = V - 1
+ * In a complete graph (where all vertices are connected directly) complexity can take O(n^3)
+ * 
+ * 
+ * 2. All pair shortest path
+ * A. Floyd-Warshal Algorithm reduces 0(n^3) to 0(n^2)
+ * Create n matrices, relaxing matrices at each step and using results of previous matrix.
  */
 
 class Vertex {
