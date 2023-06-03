@@ -1,4 +1,6 @@
 //Longest commen subsequence with recursion
+//Without memoization 2^n
+//With recursion O(mxn)
 
 lcs = (A, B, i, j) => {
 
