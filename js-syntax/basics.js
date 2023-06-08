@@ -143,14 +143,14 @@ function getBook(id) {
   return data.find((d) => d.id === id);
 }
 
-//! Destructuring
-
+//! 1. Destructuring, Rest and Spread operators
 const book = getBook(3);
 book;
 
 // const title = book.title;
 // const author = book.author;
 
+//!-- dstructuring objects
 const { title, author, pages, publicationDate, genres, hasMovieAdaptation } =
   book;
 
@@ -159,6 +159,7 @@ console.log(author, title, genres);
 // const primaryGenre = genres[0];
 // const secondaryGenre = genres[1];
 
+//!-- destructuring arrays
 const [primaryGenre, secondaryGenre, ...otherGenres] = genres;
 console.log(primaryGenre, secondaryGenre, otherGenres);
 
@@ -175,27 +176,30 @@ const updatedBook = {
 };
 updatedBook;
 
+//! 2. Arrow functions
 // function getYear(str) {
 //   return str.split("-")[0];
 // }
-
 const getYear = (str) => str.split("-")[0];
 console.log(getYear(publicationDate));
 
+//! 3. Template literals
 const summary = `${title}, a ${pages}-page long book, was written by ${author} and published in ${getYear(
   publicationDate
 )}. The book has ${hasMovieAdaptation ? "" : "not"} been adapted as a movie`;
 summary;
 
+//! 4. Ternaries
 const pagesRange = pages > 1000 ? "over a thousand" : "less than 1000";
 pagesRange;
 console.log(`The book has ${pagesRange} pages`);
 
+//! 5. Short circuiting and Logical operators
 console.log(true && "Some string");
 console.log(false && "Some string");
 console.log(hasMovieAdaptation && "This book has a movie");
 
-// falsy: 0, '', null, undefined
+// falsy values: 0, '', null, undefined
 console.log("jonas" && "Some string");
 console.log(0 && "Some string");
 
@@ -214,16 +218,16 @@ spanishTranslation;
 // const count = book.reviews.librarything.reviewsCount ?? "no data";
 // count;
 
+//! 6. Optional chaining
 function getTotalReviewCount(book) {
   const goodreads = book.reviews?.goodreads?.reviewsCount;
-  const librarything = book.reviews?.librarything?.reviewsCount ?? 0;
+  const librarything = book.reviews?.librarything?.reviewsCount ?? 0; //nullish coalescing operator
   librarything;
   return goodreads + librarything;
 }
 
 console.log(getTotalReviewCount(book));
 
-/*
 function getTotalReviewCount(book) {
   const goodreads = book.reviews?.goodreads?.reviewsCount;
   const librarything = book.reviews?.librarything?.reviewsCount ?? 0;
@@ -231,9 +235,11 @@ function getTotalReviewCount(book) {
   return goodreads + librarything;
 }
 
+//! 6. Array map, Array filter, Array reduce -- functional array methods return new array, dont mutate original array
 const books = getBooks();
 books;
 
+//Array map does some op`eration on each element of the array and returns a new array
 const x = [1, 2, 3, 4, 5].map((el) => el * 2);
 console.log(x);
 
@@ -260,14 +266,16 @@ adventureBooks;
 const pagesAllBooks = books.reduce((sum, book) => sum + book.pages, 0);
 pagesAllBooks;
 
+//Sort is not a functional method, it mutates the original array
 const arr = [3, 7, 1, 9, 6];
-const sorted = arr.slice().sort((a, b) => a - b);
+const sorted = arr.slice().sort((a, b) => a - b); // - ascending, + descending
 sorted;
 arr;
 
 const sortedByPages = books.slice().sort((a, b) => a.pages - b.pages);
 sortedByPages;
 
+//! 6.1. Immutable arrays
 // 1) Add book object to array
 const newBook = {
   id: 6,
@@ -277,7 +285,7 @@ const newBook = {
 const booksAfterAdd = [...books, newBook];
 booksAfterAdd;
 
-// 2) Delete book object from array
+// 2) Delete book object with id=3 from array
 const booksAfterDelete = booksAfterAdd.filter((book) => book.id !== 3);
 booksAfterDelete;
 
@@ -286,19 +294,19 @@ const booksAfterUpdate = booksAfterDelete.map((book) =>
   book.id === 1 ? { ...book, pages: 1210 } : book
 );
 booksAfterUpdate;
-*/
 
+//!7. Promises
 // fetch("https://jsonplaceholder.typicode.com/todos")
-//   .then((res) => res.json())
+//   .then((res) => res.json()) //convert from json to a javascript object
 //   .then((data) => console.log(data));
 
 // console.log("jonas");
 
+//!8. aync/await
 async function getTodos() {
   const res = await fetch("https://jsonplaceholder.typicode.com/todos");
   const data = await res.json();
   console.log(data);
-
   return data;
 }
 
