@@ -13,7 +13,8 @@ const longestPalindromicSubstring = (str) => {
 };
 
 //longest palindromic substring -- expand around center
-//complexity O(n^2)
+//complexity time = O(n^2)
+//complexity space = O(1)
 const longestPalindromicSubstringEAC = (str) => {
   let longest = "";
   for (let i = 0; i < str.length; i++) {
@@ -36,6 +37,8 @@ const expandAroundCenter = (str, left, right) => {
 };
 
 //longestPalindromicSubstring -- Dynamic Programming
+//complexity O(n^2)
+//space complexity O(n^2)
 const longestPalindromicSubstringDP = (str) => {
   let dp = new Array(str.length);
   for (let i = 0; i < str.length; i++) {
@@ -69,6 +72,8 @@ const longestPalindromicSubstringDP = (str) => {
 };
 
 //Manacher's Algorithm for Longest Palindromic Substring
+//complexity O(n)
+//space complexity O(n)
 const longestPalindromicSubstringManacher = (str) => {
   let newStr = "^#" + str.split("").join("#") + "#$";
   let newStrLength = newStr.length;
