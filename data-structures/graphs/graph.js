@@ -166,6 +166,9 @@ class Graph {
         }
     }
 
+    const s = 0;
+    console.log(bfs(s));
+
     topologicalSort = () => {
         var stack = [];
         var visited = [];
@@ -344,6 +347,9 @@ const exploreGrid = (grid, row, col, visited) => {
 
     return true;
 }
+
+/
+
 
 
     
